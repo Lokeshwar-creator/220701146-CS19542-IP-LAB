@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Course Registration Form</title>
+    <style>
+        body {
+            background-color: plum;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: powderblue;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="password"],
+        select,
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above */
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="color: blue; font-style: italic;">Course Registration Form</h2>
+        <form id="registrationForm" onsubmit="return validateForm()">
+
+            <!-- Student Name -->
+            <div class="form-group">
+                <label for="student_name">Student Name:</label>
+                <input type="text" id="student_name" name="student_name" placeholder="Enter your name">
+                <span id="student_name_error" class="error"></span>
+            </div>
+
+            <!-- Roll No -->
+            <div class="form-group">
+                <label for="rollno">Roll No:</label>
+                <input type="text" id="rollno" name="rollno" placeholder="Enter your roll number">
+                <span id="rollno_error" class="error"></span>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                    <label><input type="radio" name="gender" value="Other"> Other</label>
+                </div>
+                <span id="gender_error" class="error"></span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+                <span id="dob_error" class="error"></span>
+            </div>
+
+            <!-- Year -->
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="">Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+                <span id="year_error" class="error"></span>
+            </div>
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" placeholder="Enter your department">
+                <span id="department_error" class="error"></span>
+            </div>
+
+            <!-- Section -->
+            <div class="form-group">
+                <label for="section">Section:</label>
+                <input type="text" id="section" name="section" placeholder="Enter your section">
+                <span id="section_error" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Courses">Interested Course with Domain:</label>
+                <input type="text" id="Courses" name="Courses" placeholder="Enter your Course to be registered:">
+                <span id="courses_error" class="error"></span>
+            </div>
+
+            <!-- Mobile No -->
+            <div class="form-group">
+                <label for="mobile_no">Mobile No:</label>
+                <div class="tooltip">
+                    <input type="tel" id="mobile_no" name="mobile_no" placeholder="Enter your mobile number">
+                    <span class="tooltiptext">Must be 10 digits</span>
+                </div>
+                <span id="mobile_no_error" class="error"></span>
+            </div>
+
+            <!-- Email ID -->
+            <div class="form-group">
+                <label for="email">E-Mail ID:</label>
+                <div class="tooltip">
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <span class="tooltiptext">Enter a valid email address</span>
+                </div>
+                <span id="email_error" class="error"></span>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
+                <span id="address_error" class="error"></span>
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city">
+                <span id="city_error" class="error"></span>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" placeholder="Enter your country">
+                <span id="country_error" class="error"></span>
+            </div>
+
+            <!-- Pincode -->
+            <div class="form-group">
+                <label for="pincode">Pincode:</label>
+                <input type="number" id="pincode" name="pincode" placeholder="Enter your pincode">
+                <span id="pincode_error" class="error"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="tooltip">
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                    <span class="tooltiptext">At least 8 characters</span>
+                </div>
+                <span id="password_error" class="error"></span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
+                <span id="confirm_password_error" class="error"></span>
+            </div>
+
+            <!-- Student Image -->
+            <div class="form-group">
+                <label for="student_image">Upload Student Image:</label>
+                <input type="file" id="student_image" name="student_image" accept="image/*">
+            </div>
+
+            <!-- ID Proof -->
+            <div class="form-group">
+                <label for="id_proof">Upload ID Proof:</label>
+                <input type="file" id="id_proof" name="id_proof" accept=".pdf,.doc,.docx">
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn-submit">Register</button>
+            </div>
+        </form>
+        <div class="form-footer">
+            <p>Note: All fields are required. Please ensure that all the information is correct before submitting the form.</p>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var isValid = true;
+            var errors = {
+                student_name: "",
+                rollno: "",
+                gender: "",
+                dob: "",
+                year: "",
+                department: "",
+                section: "",
+                Courses: "",
+                mobile_no: "",
+                email: "",
+                address: "",
+                city: "",
+                country: "",
+                pincode: "",
+                password: "",
+                confirm_password: ""
+            };
+
+            // Student Name
+            var studentName = document.getElementById("student_name").value;
+            if (studentName.trim() === "") {
+                errors.student_name = "Student Name is required.";
+                isValid = false;
+            }
+
+            // Roll No
+            var rollno = document.getElementById("rollno").value;
+            if (rollno.trim() === "") {
+                errors.rollno = "Roll No is required.";
+                isValid = false;
+            }
+
+            // Gender
+            var gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                errors.gender = "Gender is required.";
+                isValid = false;
+            }
+
+            // Date of Birth
+            var dob = document.getElementById("dob").value;
+            if (dob.trim() === "") {
+                errors.dob = "Date of Birth is required.";
+                isValid = false;
+            }
+
+            // Year
+            var year = document.getElementById("year").value;
+            if (year.trim() === "") {
+                errors.year = "Year is required.";
+                isValid = false;
+            }
+
+            // Department
+            var department = document.getElementById("department").value;
+            if (department.trim() === "") {
+                errors.department = "Department is required.";
+                isValid = false;
+            }
+
+            // Section
+            var section = document.getElementById("section").value;
+            if (section.trim() === "") {
+                errors.section = "Section is required.";
+                isValid = false;
+            }
+
+            // Courses
+            var courses = document.getElementById("Courses").value;
+            if (courses.trim() === "") {
+                errors.Courses = "Interested Course is required.";
+                isValid = false;
+            }
+
+            // Mobile No
+            var mobileNo = document.getElementById("mobile_no").value;
+            var mobileNoPattern = /^\d{10}$/;
+            if (!mobileNoPattern.test(mobileNo)) {
+                errors.mobile_no = "Mobile No must be 10 digits.";
+                isValid = false;
+            }
+
+            // Email
+            var email = document.getElementById("email").value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                errors.email = "Invalid email address.";
+                isValid = false;
+            }
+
+            // Address
+            var address = document.getElementById("address").value;
+            if (address.trim() === "") {
+                errors.address = "Address is required.";
+                isValid = false;
+            }
+
+            // City
+            var city = document.getElementById("city").value;
+            if (city.trim() === "") {
+                errors.city = "City is required.";
+                isValid = false;
+            }
+
+            // Country
+            var country = document.getElementById("country").value;
+            if (country.trim() === "") {
+                errors.country = "Country is required.";
+                isValid = false;
+            }
+
+            // Pincode
+            var pincode = document.getElementById("pincode").value;
+            if (pincode.trim() === "" || pincode.length !== 6) {
+                errors.pincode = "Pincode must be 6 digits.";
+                isValid = false;
+            }
+
+            // Password
+            var password = document.getElementById("password").value;
+            if (password.length < 8) {
+                errors.password = "Password must be at least 8 characters.";
+                isValid = false;
+            }
+
+            // Confirm Password
+            var confirmPassword = document.getElementById("confirm_password").value;
+            if (confirmPassword !== password) {
+                errors.confirm_password = "Passwords do not match.";
+                isValid = false;
+            }
+
+            // Show Errors
+            for (var key in errors) {
+                document.getElementById(key + "_error").innerText = errors[key];
+            }
+
+            if (isValid) {
+                alert("Your response has been recorded");
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
