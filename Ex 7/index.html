@@ -1,0 +1,33 @@
+//HTML ALONG WITH JAVASCRIPT(AJAX) to initialise the html request of student regno through AJAX//
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student RegNo Validation</title>
+    <script>
+        function validateRegNo() {
+            var regNo = document.getElementById("regNo").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "validateRegNoServlet", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("status").innerHTML = response;
+                }
+            };
+
+            xhr.send("regNo=" + regNo);
+        }
+    </script>
+</head>
+<body>
+    <h3>Enter Registration Number</h3>
+    <input type="text" id="regNo" onkeyup="validateRegNo()">
+    <p id="status"></p>
+</body>
+</html>
