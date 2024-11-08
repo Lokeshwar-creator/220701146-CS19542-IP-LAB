@@ -1,0 +1,23 @@
+Aim: 
+Program to develop an attractive web pages using Angular 9. 
+
+Procedure: 
+1. Define a simple controller: 
+2. After created module and controller, use them in our HTML. 
+3. Include angular script and app.js that we built. 
+4. Specify module in ng-app attribute and controller in ng-controller 
+attribute. 5. Start working on adding single page application support. 
+6. Make a single page application and don‟t want any page refreshes, use Angular‟s 
+routing capabilities. 
+7. Include angular-route script after the main angular script. 
+8. Specify that the module depends on ngRoute module to be able to use it. 9. The next thing is 
+to distinguish common HTML for every page. This HTML will be layout of the website. 
+10. Then specify the place where HTML of each page will be placed in our layout. There is a ng 
+view directive for that. 
+11. ng-view is an Angular directive that will include the template of the current route (for 
+example, /blog or /about) in the main layout file. 
+12. Configure the routes. Use $routeProvider service from the ngRoute 
+module. 13. For each route, specify templateUrl and controller. 
+14. If user will try to go to the route that does not exist, handle this by using otherwise function. 
+In our case, we will redirect user to the “/” route: 
+15. Build controllers for every route (already specified their names in routeProvider).
